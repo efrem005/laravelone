@@ -14,7 +14,11 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('admin.news.index')->with('news', $this->getNews())->with('category', $this->getCategory());
+        return view('admin.news.index')
+            ->with('news', $this->getNews())
+            ->with('category', $this->getCategory())
+            ->with('newsCount', $this->countNews())
+            ->with('categoryCount', $this->countCategory());
     }
 
     /**
@@ -24,7 +28,10 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('admin.news.create')->with('category', $this->getCategory());
+        return view('admin.news.create')
+            ->with('category', $this->getCategory())
+            ->with('newsCount', $this->countNews())
+            ->with('categoryCount', $this->countCategory());
     }
 
     /**
