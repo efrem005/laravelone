@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
-use phpDocumentor\Reflection\Types\Static_;
+
 
 class Controller extends BaseController
 {
@@ -196,5 +196,15 @@ class Controller extends BaseController
             }
         }
         return $data;
+    }
+
+    protected function countNews()
+    {
+        return count(static::getNews());
+    }
+
+    protected function countCategory()
+    {
+        return count(static::getCategory());
     }
 }

@@ -14,7 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.index')->with('category', $this->getCategory());
+        return view('admin.category.index')
+            ->with('category', $this->getCategory())
+            ->with('newsCount', $this->countNews())
+            ->with('categoryCount', $this->countCategory());
     }
 
     /**
@@ -24,7 +27,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('admin.category.create')
+            ->with('newsCount', $this->countNews())
+            ->with('categoryCount', $this->countCategory());
     }
 
     /**
