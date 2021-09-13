@@ -140,7 +140,7 @@
                             <ul class="list-unstyled mt-4 mb-0 blog-catagories">
                                 @foreach($category as $item)
                                     <li>
-                                        <a href="{{route('category.item', ['item' => $item['slag']])}}">{{$item['title']}}</a> <span class="float-right">14</span>
+                                        <a href="{{route('category.item', ['item' => $item['slag']])}}">{{$item['title']}}</a> <span class="float-right">10</span>
                                     </li>
                                 @endforeach
                             </ul>

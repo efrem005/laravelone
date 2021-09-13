@@ -1,13 +1,18 @@
 @extends('layouts.admin')
 
 @section('title')
-    @parent Новости
+    @parent ADMIN | Список Новостей
 @endsection
 
 @section('start_page')
     <div class="page-title-box">
         <div class="row align-items-center">
             <div class="col-md-8">
+                <h6 class="page-title">Список новостей</h6>
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="{{ route('admin.') }}">admin</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">news</li>
+                </ol>
             </div>
             <div class="col-md-4">
                 <div class="float-end d-none d-md-block">
@@ -53,10 +58,10 @@
                                     <td data-field="gender">{{$value['author']}}</td>
                                     <td data-field="gender">{{$value['created_at']}}</td>
                                     <td class="text-center" style="width: 100px">
-                                        <a class="btn btn-success btn-sm edit" title="Edit">
+                                        <a class="btn btn-success btn-sm edit" href="{{ route("admin.news.edit", ['news' => $value['id']]) }}" title="Edit">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
-                                        <a class="btn btn-danger btn-sm edit" title="delete">
+                                        <a class="btn btn-danger btn-sm edit" href="{{ route("admin.news.destroy", ['news' => $value['id']]) }}" title="delete">
                                             <i class="fas fa-shopping-basket"></i>
                                         </a>
                                     </td>

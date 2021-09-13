@@ -142,32 +142,32 @@ class Controller extends BaseController
     {
         return [
             [
-                'id' => '1',
+                'id' => 1,
                 'title' => 'Политика',
                 'slag' => 'politics'
             ],
             [
-                'id' => '2',
+                'id' => 2,
                 'title' => 'Общество',
                 'slag' => 'society'
             ],
             [
-                'id' => '3',
+                'id' => 3,
                 'title' => 'Экономика',
                 'slag' => 'economy'
             ],
             [
-                'id' => '4',
+                'id' => 4,
                 'title' => 'Культура',
                 'slag' => 'culture'
             ],
             [
-                'id' => '5',
+                'id' => 5,
                 'title' => 'Технологии',
                 'slag' => 'technologies'
             ],
             [
-                'id' => '6',
+                'id' => 6,
                 'title' => 'Наука',
                 'slag' => 'science'
             ]
@@ -179,6 +179,15 @@ class Controller extends BaseController
         foreach (static::getNews() as $news) {
             if ($news['id'] == $id) {
                 return $news;
+            }
+        }
+    }
+
+    protected function getCategoryOne(int $id)
+    {
+        foreach (static::getCategory() as $category) {
+            if ($category['id'] == $id) {
+                return $category;
             }
         }
     }
