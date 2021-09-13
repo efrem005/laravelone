@@ -1,13 +1,18 @@
 @extends('layouts.admin')
 
 @section('title')
-    @parent Категории
+    @parent ADMIN | Список категорий
 @endsection
 
 @section('start_page')
     <div class="page-title-box">
         <div class="row align-items-center">
             <div class="col-md-8">
+                <h6 class="page-title">Список категорий</h6>
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="{{ route('admin.') }}">admin</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">category</li>
+                </ol>
             </div>
             <div class="col-md-4">
                 <div class="float-end d-none d-md-block">
@@ -45,7 +50,7 @@
                                     <td data-field="title">{{$value['title']}}</td>
                                     <td data-field="header">{{$value['slag']}}</td>
                                     <td class="text-center" style="width: 100px">
-                                        <a class="btn btn-secondary btn-sm edit" title="Edit">
+                                        <a class="btn btn-secondary btn-sm edit" href="{{route('admin.category.edit', ['category' => $value['id']])}}" title="Edit">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
                                         <a class="btn btn-danger btn-sm edit" title="delete">

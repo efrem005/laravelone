@@ -27,7 +27,7 @@
             <div class="d-flex">
                 <!-- LOGO -->
                 <div class="navbar-brand-box">
-                    <a href="{{route('admin')}}" class="logo logo-light">
+                    <a href="{{route('admin.')}}" class="logo logo-light">
                         <span class="logo-lg">АДМИНКА</span>
                     </a>
                 </div>
@@ -219,8 +219,8 @@
                 <ul class="metismenu list-unstyled" id="side-menu">
                     <li class="menu-title">Main</li>
 
-                    <li>
-                        <a href="{{route('admin')}}" class="waves-effect">
+                    <li @if(request()->routeIs('admin.')) class="mm-active" @endif>
+                        <a href="{{route('admin.')}}" class="waves-effect">
                             <i class="ti-home"></i><span class="badge rounded-pill bg-primary float-end">2</span>
                             <span>Dashboard</span>
                         </a>
@@ -228,15 +228,15 @@
 
                     <li class="menu-title">Pages</li>
 
-                    <li>
+                    <li @if(request()->routeIs('admin.news.*')) class="mm-active" @endif>
                         <a href="{{route('admin.news.index')}}">
                             <i class="ti-archive"></i><span class="badge rounded-pill bg-primary float-end">{{$newsCount}}</span>
                             <span> news </span>
                         </a>
                     </li>
 
-                    <li>
-                        <a href="{{route('admin.category.index')}}">
+                    <li @if(request()->routeIs('admin.category.*')) class="mm-active" @endif>
+                        <a href="{{route('admin.category.index')}}" @if(request()->routeIs('admin.category.*')) class="active" @endif>
                             <i class="ti-package"></i><span class="badge rounded-pill bg-primary float-end">{{$categoryCount}}</span>
                             <span>category</span>
                         </a>

@@ -19,10 +19,11 @@ use App\Http\Controllers\Admin\NewsController as NewsAdmin;
 */
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
-Route::get('/admin', [IndexController::class, 'admin'])->name('admin');
+Route::get('/auth', [IndexController::class, 'inAuth'])->name('auth');
 
 // admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/', [IndexController::class, 'admin']);
     Route::resource('news', NewsAdmin::class);
     Route::resource('category', CategoryAdmin::class);
 });

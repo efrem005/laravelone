@@ -42,13 +42,18 @@
             </div>
         </div><!--end col-->
     @endforeach
+
     <!-- PAGINATION START -->
     <div class="col-12">
         <ul class="pagination justify-content-center mb-0">
             <li class="page-item"><a class="page-link" href="javascript:void(0)" aria-label="Previous">назад</a></li>
-            <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
-            <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+            @foreach(range(1, ceil(count($news)/6)) as $item)
+                @if($item == 1)
+                    <li class="page-item active"><a class="page-link" href="{{$item}}">{{$item}}</a></li>
+                @elseif($item != 1)
+                    <li class="page-item"><a class="page-link" href="{{$item}}">{{$item}}</a></li>
+                @endif
+            @endforeach
             <li class="page-item"><a class="page-link" href="javascript:void(0)" aria-label="Next">пред</a></li>
         </ul>
     </div><!--end col-->

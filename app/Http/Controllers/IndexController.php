@@ -16,7 +16,8 @@ class IndexController extends Controller
     public function inAuth()
     {
         return view('login')
-            ->with('category', $this->getCategory());
+            ->with('category', $this->getCategory())
+            ->with('news', $this->getNews());
     }
 
     //admin
