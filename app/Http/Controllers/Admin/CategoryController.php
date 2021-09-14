@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -14,10 +16,13 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $news = new News();
+        $category = new Category();
+
         return view('admin.category.index')
-            ->with('category', $this->getCategory())
-            ->with('newsCount', $this->countNews())
-            ->with('categoryCount', $this->countCategory());
+            ->with('category', $category->getCategory())
+            ->with('newsCount', $news->countNews())
+            ->with('categoryCount', $category->countCategory());
     }
 
     /**
@@ -27,9 +32,12 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        $news = new News();
+        $category = new Category();
+
         return view('admin.category.create')
-            ->with('newsCount', $this->countNews())
-            ->with('categoryCount', $this->countCategory());
+            ->with('newsCount', $news->countNews())
+            ->with('categoryCount', $category->countCategory());
     }
 
     /**
@@ -70,10 +78,13 @@ class CategoryController extends Controller
      */
     public function edit(int $id)
     {
+        $news = new News();
+        $category = new Category();
+
         return view('admin.category.edit')
-            ->with('category', $this->getCategoryOne($id))
-            ->with('newsCount', $this->countNews())
-            ->with('categoryCount', $this->countCategory());
+            ->with('category', $category->getCategoryOne($id))
+            ->with('newsCount', $news->countNews())
+            ->with('categoryCount', $category->countCategory());
     }
 
     /**

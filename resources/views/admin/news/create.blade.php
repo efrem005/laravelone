@@ -28,7 +28,7 @@
                 <select name="category" class="form-select" id="exampleInputEmail1">
 {{--                    <option selected>выбирете категорию....</option>--}}
                     @foreach ($category as $item)
-                        <option @if($item['id'] == old('category')) selected @endif value="{{$item['id']}}">{{$item['title']}}</option>
+                        <option @if($item->id == old('category')) selected @endif value="{{$item->id}}">{{$item->title}}</option>
                     @endforeach
                 </select>
             </div>

@@ -25,7 +25,7 @@
             @csrf
             <div class="mb-3">
                 <label for="exampleInputText" class="form-label">Название категории</label>
-                <input type="text" name="title" value="{{ $category['title'] }}" class="form-control" id="exampleInputText">
+                <input type="text" name="title" value="{{ $category->title }}" class="form-control" id="exampleInputText">
             </div>
             @if($errors->has('title'))
                 @foreach($errors->get('title') as $error)
@@ -34,7 +34,7 @@
             @endif
             <div class="mb-3">
                 <label for="exampleInputUrl" class="form-label">имя URL</label>
-                <input name="slag" value="{{ $category['slag'] }}" class="form-control" id="exampleInputUrl">
+                <input name="slag" value="{{ $category->slag }}" class="form-control" id="exampleInputUrl">
             </div>
             @if($errors->has('slag'))
                 @foreach($errors->get('slag') as $error)

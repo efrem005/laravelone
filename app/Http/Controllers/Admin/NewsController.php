@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class NewsController extends Controller
 {
@@ -14,11 +17,14 @@ class NewsController extends Controller
      */
     public function index()
     {
+        $news = new News();
+        $category = new Category();
+
         return view('admin.news.index')
-            ->with('news', $this->getNews())
-            ->with('category', $this->getCategory())
-            ->with('newsCount', $this->countNews())
-            ->with('categoryCount', $this->countCategory());
+            ->with('news', $news->getNews())
+            ->with('category', $category->getCategory())
+            ->with('newsCount', $news->countNews())
+            ->with('categoryCount', $category->countCategory());
     }
 
     /**
@@ -28,10 +34,13 @@ class NewsController extends Controller
      */
     public function create()
     {
+        $news = new News();
+        $category = new Category();
+
         return view('admin.news.create')
-            ->with('category', $this->getCategory())
-            ->with('newsCount', $this->countNews())
-            ->with('categoryCount', $this->countCategory());
+            ->with('category', $category->getCategory())
+            ->with('newsCount', $news->countNews())
+            ->with('categoryCount', $category->countCategory());
     }
 
     /**
@@ -73,14 +82,17 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id)
     {
+        $news = new News();
+        $category = new Category();
+
         return view('admin.news.edit')
-            ->with('news', $this->getNews())
-            ->with('category', $this->getCategory())
-            ->with('newsCount', $this->countNews())
-            ->with('categoryCount', $this->countCategory())
-            ->with('new', $this->getNewOne($id));
+            ->with('news', $news->getNews())
+            ->with('category', $category->getCategory())
+            ->with('newsCount', $news->countNews())
+            ->with('categoryCount', $category->countCategory())
+            ->with('new', $news->getNewOne($id));
     }
 
     /**

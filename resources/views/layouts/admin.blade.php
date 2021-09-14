@@ -275,7 +275,7 @@
             </div>
         </footer>
     </div>
-    <!-- end main content-->
+    <!-- end Main content-->
 
 </div>
 <!-- END layout-wrapper -->
