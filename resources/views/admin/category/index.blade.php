@@ -46,11 +46,11 @@
                             <tbody>
                             @foreach($category as $key => $value)
                                 <tr data-id="{{$key}}" style="cursor: pointer;">
-                                    <td data-field="id" style="width: 80px">{{$value['id']}}</td>
-                                    <td data-field="title">{{$value['title']}}</td>
-                                    <td data-field="header">{{$value['slag']}}</td>
+                                    <td data-field="id" style="width: 80px">{{$value->id}}</td>
+                                    <td data-field="title">{{$value->title}}</td>
+                                    <td data-field="header">{{$value->slag}}</td>
                                     <td class="text-center" style="width: 100px">
-                                        <a class="btn btn-secondary btn-sm edit" href="{{route('admin.category.edit', ['category' => $value['id']])}}" title="Edit">
+                                        <a class="btn btn-secondary btn-sm edit" href="{{route('admin.category.edit', ['category' => $value->id])}}" title="Edit">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
                                         <a class="btn btn-danger btn-sm edit" title="delete">

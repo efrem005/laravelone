@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-    @parent {{$new['title']}}
+    @parent {{$new->title}}
 @endsection
 
 @section('header_title')
@@ -9,10 +9,10 @@
         <div class="row justify-content-center">
             <div class="col-lg-12 text-center">
                 <div class="page-next-level">
-                    <h2> {{$new['title']}} </h2>
+                    <h2> {{$new->title}} </h2>
                     <ul class="list-unstyled mt-4">
-                        <li class="list-inline-item h6 user text-muted mr-2"><i class="mdi mdi-account"></i>{{$new['author']}}</li>
-                        <li class="list-inline-item h6 date text-muted"><i class="mdi mdi-calendar-check"></i>{{$new['created_at']}}</li>
+                        <li class="list-inline-item h6 user text-muted mr-2"><i class="mdi mdi-account"></i>{{$new->author}}</li>
+                        <li class="list-inline-item h6 date text-muted"><i class="mdi mdi-calendar-check"></i>{{$new->created_at}}</li>
                     </ul>
                 </div>
             </div><!--end col-->
@@ -27,13 +27,13 @@
             <div class="card-body content">
 
                 @foreach($category as $item)
-                    @if($item['id'] == $new['category_id'])
-                        <h6><i class="mdi mdi-tag text-primary mr-1"></i><a href="javscript:void(0)" class="text-primary">{{$item['title']}}</a></h6>
+                    @if($item->id == $new->category_id)
+                        <h6><i class="mdi mdi-tag text-primary mr-1"></i><a href="javscript:void(0)" class="text-primary">{{$item->title}}</a></h6>
                     @endif
                 @endforeach
 {{--                <p class="text-muted mt-3">The most well-known dummy text is the 'Lorem Ipsum', which is said to have originated in the 16th century. Lorem Ipsum is composed in a pseudo-Latin language which more or less corresponds to 'proper' Latin. It contains a series of real Latin words. This ancient dummy text is also incomprehensible, but it imitates the rhythm of most European languages in Latin script. </p>--}}
                 <blockquote class="blockquote mt-3 p-3">
-                    <p class="text-muted mb-0 font-italic">{{$new['description']}}</p>
+                    <p class="text-muted mb-0 font-italic">{{$new->description}}</p>
                 </blockquote>
 {{--                <p class="text-muted">The advantage of its Latin origin and the relative meaninglessness of Lorum Ipsum is that the text does not attract attention to itself or distract the viewer's attention from the layout.</p>--}}
                 <div class="post-meta mt-3">

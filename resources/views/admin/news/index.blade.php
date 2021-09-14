@@ -48,20 +48,20 @@
                                 <tbody>
                                 @foreach($news as $key => $value)
                                 <tr data-id="{{$key}}" style="cursor: pointer;">
-                                    <td data-field="id" style="width: 80px">{{$value['id']}}</td>
+                                    <td data-field="id" style="width: 80px">{{$value->id}}</td>
                                     @foreach($category as $item)
-                                        @if($item['id'] == $value['category_id'])
-                                            <td data-field="name">{{$item['title']}}</td>
+                                        @if($item->id == $value->category_id)
+                                            <td data-field="name">{{$item->title}}</td>
                                         @endif
                                     @endforeach
-                                    <td data-field="age">{{ $value['title'] . "...." }}</td>
-                                    <td data-field="gender">{{$value['author']}}</td>
-                                    <td data-field="gender">{{$value['created_at']}}</td>
+                                    <td data-field="age">{{ $value->title . "...." }}</td>
+                                    <td data-field="gender">{{$value->author}}</td>
+                                    <td data-field="gender">{{$value->created_at}}</td>
                                     <td class="text-center" style="width: 100px">
-                                        <a class="btn btn-success btn-sm edit" href="{{ route("admin.news.edit", ['news' => $value['id']]) }}" title="Edit">
+                                        <a class="btn btn-success btn-sm edit" href="{{ route("admin.news.edit", ['news' => $value->id]) }}" title="Edit">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
-                                        <a class="btn btn-danger btn-sm edit" href="{{ route("admin.news.destroy", ['news' => $value['id']]) }}" title="delete">
+                                        <a class="btn btn-danger btn-sm edit" href="{{ route("admin.news.destroy", ['news' => $value->id]) }}" title="delete">
                                             <i class="fas fa-shopping-basket"></i>
                                         </a>
                                     </td>

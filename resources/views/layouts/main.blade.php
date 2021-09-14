@@ -70,7 +70,7 @@
                             <ul>
                                 @foreach($category as $item)
                                     <li>
-                                        <a href="{{route('category.item', ['item' => $item['slag']])}}">{{$item['title']}}</a>
+                                        <a href="{{route('category.item', ['item' => $item->slag])}}">{{$item->title}}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -140,7 +140,7 @@
                             <ul class="list-unstyled mt-4 mb-0 blog-catagories">
                                 @foreach($category as $item)
                                     <li>
-                                        <a href="{{route('category.item', ['item' => $item['slag']])}}">{{$item['title']}}</a> <span class="float-right">10</span>
+                                        <a href="{{route('category.item', ['item' => $item->slag])}}">{{$item->title}}</a> <span class="float-right">{{$item->count}}</span>
                                     </li>
                                 @endforeach
                             </ul>
@@ -154,8 +154,8 @@
                                 @foreach($news as $key => $value)
                                     @continue($key > 3)
                                     <div class="clearfix post-recent">
-                                        <div class="post-recent-thumb float-left"> <a href="{{route('news.show', ['id' => $value['id']])}}"> <img alt="img" src="/assets/images/blog/07.jpg" class="img-fluid rounded"></a></div>
-                                        <div class="post-recent-content float-left"><a href="{{route('news.show', ['id' => $value['id']])}}"><p>{{$value['title']}}</p></a><span class="text-muted mt-2">{{$value['created_at']}}</span></div>
+                                        <div class="post-recent-thumb float-left"> <a href="{{route('news.show', ['id' => $value->id])}}"> <img alt="img" src="/assets/images/blog/07.jpg" class="img-fluid rounded"></a></div>
+                                        <div class="post-recent-content float-left"><a href="{{route('news.show', ['id' => $value->id])}}"><p>{{$value->title}}</p></a><span class="text-muted mt-2">{{$value->created_at}}</span></div>
                                     </div>
                                 @endforeach
                             </div>
@@ -167,7 +167,7 @@
                             <h4 class="widget-title">Теги</h4>
                             <div class="tagcloud mt-4">
                                 @foreach($category as $item)
-                                <a href="{{route('category.item', ['item' => $item['slag']])}}" class="rounded">{{$item['slag']}}</a>
+                                <a href="{{route('category.item', ['item' => $item->slag])}}" class="rounded">{{$item->slag}}</a>
                                 @endforeach
                             </div>
                         </div>

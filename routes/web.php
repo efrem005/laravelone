@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\IndexController;
+use App\Http\Controllers\Main\NewsController;
+use App\Http\Controllers\Main\CategoryController;
+use App\Http\Controllers\Main\IndexController;
 use App\Http\Controllers\Admin\CategoryController as CategoryAdmin;
 use App\Http\Controllers\Admin\NewsController as NewsAdmin;
 
@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\NewsController as NewsAdmin;
 */
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
+Route::get('/page={id}', [IndexController::class, 'index'])->where('id', '\d+')->name('home.page');
 Route::get('/auth', [IndexController::class, 'inAuth'])->name('auth');
 
 // admin
