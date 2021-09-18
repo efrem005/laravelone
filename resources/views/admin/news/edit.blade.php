@@ -21,11 +21,13 @@
 
 @section('content')
     <div class="row justify-content-md-center py-5">
-        <form method="post" action="{{route('admin.news.store')}}" class="col-8">
+        @include('inc.messages')
+        <form method="post" action="{{route('admin.news.update', ['news' => $new])}}" class="col-8">
             @csrf
+            @method('put')
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">категория</label>
-                <select name="category" class="form-select" id="exampleInputEmail1">
+                <select name="category_id" class="form-select" id="exampleInputEmail1">
                     @foreach ($category as $item)
                         <option @if($item->id == $new->category_id) selected @endif value="{!! $item->id !!}">{{$item->title}}</option>
                     @endforeach

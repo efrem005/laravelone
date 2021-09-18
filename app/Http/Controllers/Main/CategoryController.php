@@ -8,12 +8,13 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function getCategorySrh(string $item)
+    public function getCategorySrh($item)
     {
-        $category = new Category();
+        $category = Category::with('news')->find($item);
 
         return view('news.index')
-            ->with('news', $category->getCategorySearch($item))
-            ->with('category', $category->getCategory());
+            ->with('news', $category->news()->paginate(6))
+            ->with('title', $category->title)
+            ->with('category', Category::withCount('news')->get());
     }
 }

@@ -25,10 +25,10 @@
             @csrf
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">категория</label>
-                <select name="category" class="form-select" id="exampleInputEmail1">
+                <select name="category_id" class="form-select" id="exampleInputEmail1">
 {{--                    <option selected>выбирете категорию....</option>--}}
                     @foreach ($category as $item)
-                        <option @if($item->id == old('category')) selected @endif value="{{$item->id}}">{{$item->title}}</option>
+                        <option @if($item->id == old('category_id')) selected @endif value="{{$item->id}}">{{$item->title}}</option>
                     @endforeach
                 </select>
             </div>
