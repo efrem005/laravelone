@@ -19,7 +19,6 @@ use App\Http\Controllers\Admin\NewsController as NewsAdmin;
 */
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
-Route::get('/page={id}', [IndexController::class, 'index'])->where('id', '\d+')->name('home.page');
 Route::get('/auth', [IndexController::class, 'inAuth'])->name('auth');
 
 // admin
@@ -30,7 +29,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 });
 
 //news
-Route::get('/news/{id}', [NewsController::class, 'getNew'])->where('id', '\d+')->name('news.show');
+Route::get('/news/{new}', [NewsController::class, 'getNew'])->where('new', '\d+')->name('news.show');
 
 //category
-Route::get('/category/{item}', [CategoryController::class, 'getCategorySrh'])->where('item', '[a-z]+')->name('category.item');
+Route::get('/category/{item}', [CategoryController::class, 'getCategorySrh'])->where('item', '\d+')->name('category.item');
