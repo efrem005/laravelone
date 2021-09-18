@@ -26,11 +26,8 @@
             <img src="/assets/images/blog/01.jpg" class="img-fluid rounded-top" alt="">
             <div class="card-body content">
 
-                @foreach($category as $item)
-                    @if($item->id == $new->category_id)
-                        <h6><i class="mdi mdi-tag text-primary mr-1"></i><a href="javscript:void(0)" class="text-primary">{{$item->title}}</a></h6>
-                    @endif
-                @endforeach
+                        <h6><i class="mdi mdi-tag text-primary mr-1"></i><a href="javscript:void(0)" class="text-primary">{{$new->category->title}}</a></h6>
+
 {{--                <p class="text-muted mt-3">The most well-known dummy text is the 'Lorem Ipsum', which is said to have originated in the 16th century. Lorem Ipsum is composed in a pseudo-Latin language which more or less corresponds to 'proper' Latin. It contains a series of real Latin words. This ancient dummy text is also incomprehensible, but it imitates the rhythm of most European languages in Latin script. </p>--}}
                 <blockquote class="blockquote mt-3 p-3">
                     <p class="text-muted mb-0 font-italic">{{$new->description}}</p>

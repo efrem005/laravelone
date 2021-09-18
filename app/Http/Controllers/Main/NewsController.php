@@ -11,23 +11,17 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = new News();
-        $category = new Category();
-
         return view('news.index')
-            ->with('news', $news->getNews())
-            ->with('category', $category->getCategory());
+            ->with('news', News::all())
+            ->with('category', Category::all());
     }
 
-    public function getNew(int $id)
+    public function getNew(News $new)
     {
-        $news = new News();
-        $category = new Category();
-
         return view('news.show')
-            ->with('new', $news->getNewOne($id))
-            ->with('category', $category->getCategory())
-            ->with('news', $news->getNews());
+            ->with('new', $new)
+            ->with('category', Category::query()->withCount('news')->get())
+            ->with('news', News::query()->limit(4)->get());
     }
 
 }

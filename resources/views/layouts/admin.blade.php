@@ -253,15 +253,15 @@
     <!-- ============================================================== -->
     <div class="main-content">
 
-        <div class="page-content">
-            <div class="container-fluid">
+        <div class="page-content mb-3">
+{{--            <div class="container">--}}
                 <!-- start page title -->
                 @yield('start_page')
                 <!-- end page title -->
 
                 <!-- Start Your Main Content Here-->
                 @yield('content')
-            </div> <!-- container-fluid -->
+{{--            </div> <!-- container-fluid -->--}}
         </div>
         <!-- End Page-content -->
 

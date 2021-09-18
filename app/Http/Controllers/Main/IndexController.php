@@ -9,35 +9,25 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function index(int $page = 0)
+    public function index()
     {
-        $news = new News();
-        $category = new Category();
-
         return view('index')
-            ->with('category', $category->getCategory())
-            ->with('page', $news->getNews())
-            ->with('news', $news->getNewsLimit($page));
+            ->with('category', Category::withCount('news')->get())
+            ->with('news', News::with('category')->paginate(6));
     }
 
     public function inAuth()
     {
-        $news = new News();
-        $category = new Category();
-
         return view('auth.login')
-            ->with('category', $category->getCategory())
-            ->with('news', $news->getNews());
+            ->with('category', Category::all())
+            ->with('news', News::all());
     }
 
     //admin
     public function admin()
     {
-        $news = new News();
-        $category = new Category();
-
         return view('admin.index')
-            ->with('newsCount', $news->countNews())
-            ->with('categoryCount', $category->countCategory());
+            ->with('newsCount', count(News::all()))
+            ->with('categoryCount', count(Category::all()));
     }
 }

@@ -21,8 +21,10 @@
 
 @section('content')
     <div class="row justify-content-md-center py-5">
-        <form method="post" action="{{route('admin.category.store')}}" class="col-8">
+        @include('inc.messages')
+        <form method="post" action="{{route('admin.category.update', ['category' => $category])}}" class="col-8">
             @csrf
+            @method('put')
             <div class="mb-3">
                 <label for="exampleInputText" class="form-label">Название категории</label>
                 <input type="text" name="title" value="{{ $category->title }}" class="form-control" id="exampleInputText">
