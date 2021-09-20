@@ -22,44 +22,38 @@
 @section('content')
     <div class="row justify-content-md-center py-5">
         @include('inc.messages')
-        <form method="post" action="{{route('admin.news.update', ['news' => $new])}}" class="col-8">
+        <form class="col-8" method="post" action="{{route('admin.news.update', ['news' => $new])}}">
             @csrf
             @method('put')
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">категория</label>
+            <div class="form-floating mb-3">
                 <select name="category_id" class="form-select" id="exampleInputEmail1">
                     @foreach ($category as $item)
                         <option @if($item->id == $new->category_id) selected @endif value="{!! $item->id !!}">{{$item->title}}</option>
                     @endforeach
                 </select>
+                <label for="exampleInputEmail1" class="form-label">категория</label>
             </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Название новости</label>
-                <input type="text" name="title" value="{{ $new->title }}" class="form-control" id="exampleInputPassword1">
+            <div class="form-floating mb-3">
+                <input type="text" name="title" value="{{ $new->title }}" class="form-control @error('title') is-invalid @enderror" placeholder="Название новости" id="exampleInputPassword1">
+                <label for="exampleInputPassword1">Название новости</label>
             </div>
-            @if($errors->has('title'))
-                @foreach($errors->get('title') as $error)
-                    <div class="alert alert-danger col-8">{{ $error }}</div>
-                @endforeach
-            @endif
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Текст новости</label>
-                <textarea name="description" class="form-control" id="exampleInputPassword1">{{ $new->description }}</textarea>
+            @error('title')
+                    <div class="alert alert-danger col-8">{{ $message }}</div>
+            @enderror
+            <div class="form-floating mb-3">
+                <textarea style="height: 100px" placeholder="Текст новости" name="description" class="form-control @error('description') is-invalid @enderror" id="exampleInputPassword1">{{ $new->description }}</textarea>
+                <label for="exampleInputPassword1">Текст новости</label>
             </div>
-            @if($errors->has('description'))
-                @foreach($errors->get('description') as $error)
-                    <div class="alert alert-danger col-8">{{ $error }}</div>
-                @endforeach
-            @endif
-            <div class="mb-3">
+            @error('description')
+            <div class="alert alert-danger col-8">{{ $message }}</div>
+            @enderror
+            <div class="form-floating mb-3">
+                <input type="text" name="author" value="{{ $new->author }}" placeholder="Автор" class="form-control @error('author') is-invalid @enderror" id="exampleInputPassword1">
                 <label for="exampleInputPassword1" class="form-label">Автор</label>
-                <input type="text" name="author" value="{{ $new->author }}" class="form-control" id="exampleInputPassword1">
             </div>
-            @if($errors->has('author'))
-                @foreach($errors->get('author') as $error)
-                    <div class="alert alert-danger col-8">{{ $error }}</div>
-                @endforeach
-            @endif
+            @error('author')
+            <div class="alert alert-danger col-8">{{ $message }}</div>
+            @enderror
             <button type="submit" class="btn btn-primary">обновить</button>
         </form>
     </div>

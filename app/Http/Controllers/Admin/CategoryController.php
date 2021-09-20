@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Category\CategoryCreateRequest;
+use App\Http\Requests\Admin\Category\CategoryUpdateRequest;
 use App\Models\Category;
 use App\Models\News;
 use Illuminate\Http\Request;
@@ -40,29 +42,18 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Category $category)
+    public function store(CategoryCreateRequest $request, Category $category)
     {
-        $request->validate([
-            'title' => ['required', 'string', 'min:3'],
-            'slag' => ['required', 'string', 'min:3']
-        ],[],
-            [
-                'title' => 'Название категории',
-                'slag' => 'имя URL'
-            ]);
-
-        $category->fill(
-            $request->only(['title', 'slag'])
-        )->save();
+        $category->fill($request->validated())->save();
 
         if ($category->save()) {
             return redirect()
                 ->route('admin.category.index')
-                ->with('success', 'Создание категории прошло успешно');
+                ->with('success', __('messages.admin.category.create.success'));
         }
 
         return back()
-            ->with('error', 'При создание категории произошла ошибка')
+            ->with('error', __('messages.admin.category.create.fail'))
             ->withInput();
     }
 
@@ -98,29 +89,18 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryUpdateRequest $request, Category $category)
     {
-        $request->validate([
-            'title' => ['required', 'string', 'min:3'],
-            'slag' => ['required', 'string', 'min:3']
-        ],[],
-            [
-                'title' => 'Название категории',
-                'slag' => 'имя URL'
-            ]);
-
-        $category->fill(
-            $request->only(['title', 'slag'])
-        )->save();
+        $category->fill($request->validated())->save();
 
         if ($category->save()) {
             return redirect()
                 ->route('admin.category.index')
-                ->with('success', 'Обновление прошло успешно');
+                ->with('success', __('messages.admin.category.update.success'));
         }
 
         return back()
-            ->with('error', 'При обновление произошла ошибка')
+            ->with('error', __('messages.admin.category.update.fail'))
             ->withInput();
     }
 
@@ -137,11 +117,11 @@ class CategoryController extends Controller
         if ($categorise) {
             return redirect()
                 ->route('admin.category.index')
-                ->with('success', 'Удаление прошло успешно');
+                ->with('success', __('messages.admin.category.delete.success'));
         }
 
         return back()
-            ->with('error', 'При удаление произошла ошибка')
+            ->with('error', __('messages.admin.category.delete.fail'))
             ->withInput();
     }
 }

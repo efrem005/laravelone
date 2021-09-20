@@ -79,5 +79,3 @@
     {!! $category->links('inc.paginator') !!}
     </div>
 @endsection
-
-
