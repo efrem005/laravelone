@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\News\NewsCreateRequest;
+use App\Http\Requests\Admin\News\NewsUpdateRequest;
 use App\Models\Category;
 use App\Models\News;
 use Illuminate\Http\Request;
@@ -42,33 +44,18 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, News $news)
+    public function store(NewsCreateRequest $request, News $news)
     {
-        $request->validate([
-            'category_id' => ['required', 'int'],
-            'title' => ['required', 'string', 'min:5'],
-            'description' => ['required', 'string', 'min:50'],
-            'author' => ['required', 'string', 'min:2']
-        ],[],
-            [
-                'category_id' => 'Название категории',
-                'title' => 'Название новости',
-                'description' => 'Текст новости',
-                'author' => 'Автор'
-            ]);
-
-        $news->fill(
-            $request->only('category_id', 'title', 'author', 'description')
-        )->save();
+        $news->fill($request->validated())->save();
 
         if ($news->save()) {
             return redirect()
                 ->route('admin.news.index')
-                ->with('success', 'Запись прошла успешно');
+                ->with('success', __('messages.admin.news.create.success'));
         }
 
         return back()
-            ->with('error', 'При записи произошла ошибка')
+            ->with('error', __('messages.admin.news.create.fail'))
             ->withInput();
     }
 
@@ -106,31 +93,18 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $news)
+    public function update(NewsUpdateRequest $request, News $news)
     {
-        $request->validate([
-            'title' => ['required', 'string', 'min:5'],
-            'description' => ['required', 'string', 'min:50'],
-            'author' => ['required', 'string', 'min:2']
-        ],[],
-            [
-                'title' => 'Название новости',
-                'description' => 'Текст новости',
-                'author' => 'Автор'
-            ]);
-
-        $news->fill(
-          $request->only('category_id', 'title', 'author', 'description')
-        )->save();
+        $news->fill($request->validated())->save();
 
         if ($news->save()) {
             return redirect()
                 ->route('admin.news.index')
-                ->with('success', 'Обновление прошло успешно');
+                ->with('success', __('messages.admin.news.update.success'));
         }
 
         return back()
-            ->with('error', 'При обновление произошла ошибка')
+            ->with('error', __('messages.admin.news.update.fail'))
             ->withInput();
 
     }
@@ -148,11 +122,11 @@ class NewsController extends Controller
         if ($new) {
             return redirect()
                 ->route('admin.news.index')
-                ->with('success', 'Удаление прошло успешно');
+                ->with('success', __('messages.admin.news.delete.success'));
         }
 
         return back()
-            ->with('error', 'При удаление произошла ошибка')
+            ->with('error', __('messages.admin.news.delete.fail'))
             ->withInput();
     }
 }

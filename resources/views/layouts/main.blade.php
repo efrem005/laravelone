@@ -224,5 +224,6 @@
 <script src="https://unicons.iconscout.com/release/v2.1.9/script/monochrome/bundle.js"></script>
 <!-- Main Js -->
 <script src="{{asset('/assets/js/app.js')}}"></script>
+@stack('js')
 </body>
 </html>

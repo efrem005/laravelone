@@ -231,14 +231,14 @@
                     <li @if(request()->routeIs('admin.news.*')) class="mm-active" @endif>
                         <a href="{{route('admin.news.index')}}">
                             <i class="ti-archive"></i><span class="badge rounded-pill bg-primary float-end">{{$newsCount}}</span>
-                            <span> news </span>
+                            <span>Новости</span>
                         </a>
                     </li>
 
                     <li @if(request()->routeIs('admin.category.*')) class="mm-active" @endif>
                         <a href="{{route('admin.category.index')}}" @if(request()->routeIs('admin.category.*')) class="active" @endif>
                             <i class="ti-package"></i><span class="badge rounded-pill bg-primary float-end">{{$categoryCount}}</span>
-                            <span>category</span>
+                            <span>Категории</span>
                         </a>
                     </li>
                 </ul>
@@ -292,7 +292,7 @@
 
 
 <script src="{{asset('/assets/js/app.admin.js')}}"></script>
-
+@stack('js')
 </body>
 </html>
 

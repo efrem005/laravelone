@@ -23,24 +23,23 @@
     <div class="row justify-content-md-center py-5">
         <form method="post" action="{{route('admin.category.store')}}" class="col-8">
             @csrf
-            <div class="mb-3">
-                <label for="exampleInputText" class="form-label">Название категории</label>
-                <input type="text" name="title" value="{{ old('title') }}" class="form-control" id="exampleInputText">
+
+            <div class="form-floating mb-3">
+                <input type="text" name="title" value="{{ old('title') }}" class="form-control @error('title') is-invalid @enderror" placeholder="Название категории" id="exampleInputText">
+                <label for="exampleInputText">Название категории</label>
             </div>
-            @if($errors->has('title'))
-                @foreach($errors->get('title') as $error)
-                    <div class="alert alert-danger col-8">{{ $error }}</div>
-                @endforeach
-            @endif
-            <div class="mb-3">
-                <label for="exampleInputUrl" class="form-label">имя URL</label>
-                <input name="slag" value="{{ old('slag') }}" class="form-control" id="exampleInputUrl">
+            @error('title')
+            <div class="alert alert-danger col-8">{{ $message }}</div>
+            @enderror
+
+            <div class="form-floating mb-3">
+                <input type="text" name="slag" value="{{ old('slag') }}" class="form-control @error('slag') is-invalid @enderror" placeholder="имя URL" id="exampleInputUrl">
+                <label for="exampleInputUrl">имя URL</label>
             </div>
-            @if($errors->has('slag'))
-                @foreach($errors->get('slag') as $error)
-                    <div class="alert alert-danger col-8">{{ $error }}</div>
-                @endforeach
-            @endif
+            @error('slag')
+            <div class="alert alert-danger col-8">{{ $message }}</div>
+            @enderror
+
             <button type="submit" class="btn btn-primary">добавить</button>
         </form>
     </div>
