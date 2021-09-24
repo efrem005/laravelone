@@ -21,7 +21,9 @@
 
 @section('content')
     <div class="row justify-content-md-center py-5">
-        @include('inc.messages')
+        <div class="col-12">
+            @include('inc.messages')
+        </div>
         <form method="post" action="{{route('admin.category.update', ['category' => $category])}}" class="col-8">
             @csrf
             @method('put')

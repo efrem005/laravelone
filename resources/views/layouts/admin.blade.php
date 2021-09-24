@@ -197,10 +197,18 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
+                        <a class="dropdown-item" href="{{route('home')}}"><i class="mdi mdi-book-open-page-variant-outline font-size-17 align-middle me-1"></i> На сайт</a>
                         <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle font-size-17 align-middle me-1"></i> Профиль</a>
                         <a class="dropdown-item d-flex align-items-center" href="#"><i class="mdi mdi-cog font-size-17 align-middle me-1"></i> Настройки </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger" href="#"><i class="bx bx-power-off font-size-17 align-middle me-1 text-danger"></i> выход</a>
+                        <a class="dropdown-item text-danger" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                            <i class="mdi mdi-power font-size-17 align-middle me-1"></i> {{ __('выход') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     </div>
                 </div>
 
@@ -239,6 +247,13 @@
                         <a href="{{route('admin.category.index')}}" @if(request()->routeIs('admin.category.*')) class="active" @endif>
                             <i class="ti-package"></i><span class="badge rounded-pill bg-primary float-end">{{$categoryCount}}</span>
                             <span>Категории</span>
+                        </a>
+                    </li>
+
+                    <li @if(request()->routeIs('admin.users.*')) class="mm-active" @endif>
+                        <a href="{{route('admin.users.index')}}" @if(request()->routeIs('admin.users.*')) class="active" @endif>
+                            <i class="ti-package"></i><span class="badge rounded-pill bg-primary float-end">{{$usersCount}}</span>
+                            <span>Пользователи</span>
                         </a>
                     </li>
                 </ul>

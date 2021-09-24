@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Category\CategoryCreateRequest;
 use App\Http\Requests\Admin\Category\CategoryUpdateRequest;
 use App\Models\Category;
-use App\Models\News;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -19,9 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         return view('admin.category.index')
-            ->with('category', Category::withCount('news')->paginate(10))
-            ->with('newsCount', count(News::all()))
-            ->with('categoryCount', count(Category::all()));
+            ->with('category', Category::withCount('news')->paginate(10));
     }
 
     /**
@@ -31,9 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create')
-            ->with('newsCount', count(News::all()))
-            ->with('categoryCount', count(Category::all()));
+        return view('admin.category.create');
     }
 
     /**
@@ -77,9 +72,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         return view('admin.category.edit')
-            ->with('category', $category)
-            ->with('newsCount', count(News::all()))
-            ->with('categoryCount', count(Category::all()));
+            ->with('category', $category);
     }
 
     /**

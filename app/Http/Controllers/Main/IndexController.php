@@ -15,19 +15,4 @@ class IndexController extends Controller
             ->with('category', Category::withCount('news')->get())
             ->with('news', News::with('category')->paginate(6));
     }
-
-    public function inAuth()
-    {
-        return view('auth.login')
-            ->with('category', Category::all())
-            ->with('news', News::all());
-    }
-
-    //admin
-    public function admin()
-    {
-        return view('admin.index')
-            ->with('newsCount', count(News::all()))
-            ->with('categoryCount', count(Category::all()));
-    }
 }
