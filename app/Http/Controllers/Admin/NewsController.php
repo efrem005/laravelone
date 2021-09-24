@@ -19,10 +19,7 @@ class NewsController extends Controller
     public function index()
     {
         return view('admin.news.index')
-            ->with('news', News::with('category')->paginate(10))
-            ->with('category', Category::all())
-            ->with('newsCount', count(News::all()))
-            ->with('categoryCount', count(Category::all()));
+            ->with('news', News::with('category')->paginate(10));
     }
 
     /**
@@ -33,9 +30,7 @@ class NewsController extends Controller
     public function create()
     {
         return view('admin.news.create')
-            ->with('category', Category::all())
-            ->with('newsCount', count(News::all()))
-            ->with('categoryCount', count(Category::all()));
+            ->with('category', Category::all());
     }
 
     /**
@@ -79,11 +74,8 @@ class NewsController extends Controller
     public function edit(News $news)
     {
         return view('admin.news.edit')
-            ->with('news', News::all())
-            ->with('category', Category::all())
-            ->with('newsCount', count(News::all()))
-            ->with('categoryCount', count(Category::all()))
-            ->with('new', $news);
+            ->with('new', $news)
+            ->with('category', Category::all());
     }
 
     /**

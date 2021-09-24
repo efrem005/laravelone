@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8" />
@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset('/assets/images/favicon.ico')}}">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Bootstrap -->
     <link href="{{asset('/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- Icons -->
@@ -38,12 +40,40 @@
         <!-- Logo container-->
         <div>
             <a class="logo" href="{{route('home')}}">
-{{--                <img src="assets/images/logo-dark.png" height="24" alt="">--}}
+                <img src="{{asset('assets/images/logo-dark.png')}}" height="24" alt="">
             </a>
         </div>
-        <div class="buy-button">
-{{--            <a href="https://1.envato.market/4n73n" target="_blank" class="btn btn-primary">Buy Now</a>--}}
-        </div><!--end login button-->
+        @guest
+            @if (Route::has('login'))
+                <div style="float: right; line-height: 22px; margin-top: 16px">
+                    <a class="btn btn-pills btn-info" href="{{ route('login') }}">{{ __('Войти') }}</a>
+                </div>
+            @endif
+        @else
+            <div style="float: right; line-height: 22px; margin-top: 16px">
+                <div class="btn-group dropdown-primary">
+                    <button type="button" class="btn btn-pills @if(Auth::user()->is_admin) btn-secondary @else btn-info @endif dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ Auth::user()->name }}
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item @if(request()->routeIs('home')) active @endif" href="{{route('home')}}">Главная</a>
+                        @if(Auth::user()->is_admin)
+                        <a class="dropdown-item" href="{{route('admin.')}}">Админинка</a>
+                        @endif
+                        <a class="dropdown-item @if(request()->routeIs('account.profile')) active @endif" href="{{ route('account.profile') }}">Кабинет</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                {{ __('выход') }}
+                            </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
+            </div>
+    @endguest
         <!-- End Logo container-->
         <div class="menu-extras">
             <div class="menu-item">
@@ -211,7 +241,7 @@
 <!-- Footer End -->
 
 <!-- Back to top -->
-<a href="#" class="btn btn-icon btn-soft-primary back-to-top"><i data-feather="arrow-up" class="icons"></i></a>
+<a href="{{route('home')}}" class="btn btn-icon btn-soft-primary back-to-top"><i data-feather="arrow-up" class="icons"></i></a>
 <!-- Back to top -->
 
 <!-- javascript -->

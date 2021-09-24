@@ -20,8 +20,10 @@
 @endsection
 
 @section('content')
-    <div class="row justify-content-md-center py-5">
+    <div class="row justify-content-md-center py-3">
+        <div class="col-12">
         @include('inc.messages')
+        </div>
         <form class="col-8" method="post" action="{{route('admin.news.update', ['news' => $new])}}">
             @csrf
             @method('put')
