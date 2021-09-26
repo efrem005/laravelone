@@ -1,7 +1,4 @@
 @extends('layouts.auth')
-@if(isset($error))
-@dd($error)
-@endif
 
 @section('content')
     <section class="bg-home d-flex align-items-center">

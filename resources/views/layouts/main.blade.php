@@ -62,7 +62,7 @@
                         @endif
                         <a class="dropdown-item @if(request()->routeIs('account.profile')) active @endif" href="{{ route('account.profile') }}">Кабинет</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        <a class="dropdown-item" href="{{ route('logout') }}" style="color: red"
                                onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
                                 {{ __('выход') }}

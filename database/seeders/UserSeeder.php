@@ -18,32 +18,34 @@ class UserSeeder extends Seeder
             [
                 [
                     'name' => 'Admin',
-                    'email' => 'laraval@mail.ru',
+                    'email' => 'admin@mail.ru',
                     'email_verified_at' => now(),
-                    'password' => Hash::make('12345678'),
+                    'password' => Hash::make(12345678),
                     'login' => 'admin',
-                    'is_admin' => true,
-                    'created_at' => now(),
-                    'updated_at' => now()
-                ],
-                [
-                    'name' => 'Laravel',
-                    'email' => 'php@mail.ru',
-                    'password' => Hash::make('12345678'),
-                    'login' => 'laravel',
-                    'is_admin' => false,
+                    'is_admin' => 2,
                     'created_at' => now(),
                     'updated_at' => now()
                 ],
                 [
                     'name' => 'Николай',
                     'email' => 'efrem_nn@mail.ru',
-                    'password' => Hash::make('12345678'),
+                    'email_verified_at' => now(),
+                    'password' => Hash::make(12345678),
                     'login' => 'efrem_nn',
-                    'is_admin' => true,
+                    'is_admin' => 2,
                     'created_at' => now(),
                     'updated_at' => now()
                 ],
+                [
+                    'name' => 'Laravel',
+                    'email' => 'laravel@mail.ru',
+                    'email_verified_at' => null,
+                    'password' => Hash::make(12345678),
+                    'login' => 'laravel',
+                    'is_admin' => 1,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]
             ]);
     }
 }
