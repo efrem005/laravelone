@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('adminAccess')->only(['edit', 'update', 'destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      *

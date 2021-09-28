@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('adminAccess')->only(['edit', 'update', 'destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -88,6 +93,7 @@ class NewsController extends Controller
     public function update(NewsUpdateRequest $request, News $news)
     {
         $news->fill($request->validated())->save();
+
 
         if ($news->save()) {
             return redirect()
