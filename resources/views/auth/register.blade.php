@@ -89,11 +89,11 @@
                                     <div class="col-lg-12 mt-4 text-center">
                                         <h6>Или зарегистрируйтесь с</h6>
                                         <ul class="list-unstyled social-icon mb-0 mt-3">
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i data-feather="facebook" class="fea icon-sm fea-social"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i data-feather="github" class="fea icon-sm fea-social"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i data-feather="twitter" class="fea icon-sm fea-social"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i data-feather="gitlab" class="fea icon-sm fea-social"></i></a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i data-feather="instagram" class="fea icon-sm fea-social"></i></a></li>
+                                            <li class="list-inline-item"><a href="{{ route('facebook.start') }}" class="rounded"><i class="uil uil-facebook-f" style="font-size:19px;line-height:32px;"></i></a></li>
+                                            <li class="list-inline-item"><a href="{{ route('github.start') }}" class="rounded"><i class="uil uil-github-alt" style="font-size:19px;line-height:32px;"></i></a></li>
+                                            <li class="list-inline-item"><a href="{{ route('vk.start') }}" class="rounded"><i class="uil uil-vk-alt" style="font-size:19px;line-height:32px;"></i></a></li>
+                                            <li class="list-inline-item"><a href="{{ route('google.start') }}" class="rounded"><i class="uil uil-google" style="font-size:19px;line-height:32px;"></i></a></li>
+                                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="uil uil-instagram-alt" style="font-size:19px;line-height:32px;"></i></a></li>
                                         </ul><!--end icon-->
                                     </div>
                                     <div class="mx-auto">

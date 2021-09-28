@@ -15,6 +15,12 @@ class CategorySeeder extends Seeder
     {
         \DB::table('categories')->insert([
             [
+                'title' => 'Короновирус',
+                'slag' => 'koronavirus',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
                 'title' => 'Политика',
                 'slag' => 'politics',
                 'created_at' => now(),
@@ -28,7 +34,7 @@ class CategorySeeder extends Seeder
             ],
             [
                 'title' => 'Экономика',
-                'slag' => 'economy',
+                'slag' => 'business',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -40,7 +46,7 @@ class CategorySeeder extends Seeder
             ],
             [
                 'title' => 'Технологии',
-                'slag' => 'technologies',
+                'slag' => 'computers',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -49,7 +55,31 @@ class CategorySeeder extends Seeder
                 'slag' => 'science',
                 'created_at' => now(),
                 'updated_at' => now()
-            ]
+            ],
+            [
+                'title' => 'Спорт',
+                'slag' => 'sport',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'title' => 'В мире',
+                'slag' => 'world',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'title' => 'Происшествия',
+                'slag' => 'incident',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'title' => 'Авто',
+                'slag' => 'auto',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
         ]);
     }
 

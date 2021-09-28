@@ -13,8 +13,9 @@ class Category extends Model
 
     protected $table = 'categories';
 
-    protected $guarded = [
-        'id'
+    protected $fillable = [
+        'title',
+        'slag'
     ];
 
     public function news(): HasMany

@@ -192,7 +192,7 @@
                 <div class="dropdown d-inline-block">
                     <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="rounded-circle header-profile-user" src="/assets/images/users/user-4.jpg"
+                        <img class="rounded-circle header-profile-user" src="@if(Auth::user()->avatar) {{Auth::user()->avatar}} @else /assets/images/users/avatar-7.jpg @endif"
                              alt="Header Avatar">
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">

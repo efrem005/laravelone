@@ -14,9 +14,14 @@
                     <li class="breadcrumb-item active" aria-current="page">news</li>
                 </ol>
             </div>
-            <div class="col-md-4">
-                <div class="float-end d-none d-md-block">
+            <div class="col-md-4 d-flex justify-content-end">
+                <div class="d-none d-md-block">
                     <div class="dropdown">
+                        @if(Auth::user()->is_admin == 2)
+                        <a class="btn btn-primary  dropdown-toggle" href="{{route('admin.parser')}}">
+                            <i class="mdi mdi-cog me-2"></i> обновить
+                        </a>
+                        @endif
                         <a class="btn btn-primary  dropdown-toggle" href="{{route('admin.news.create')}}">
                             <i class="mdi mdi-cog me-2"></i> добавить
                         </a>
