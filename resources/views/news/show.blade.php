@@ -23,14 +23,14 @@
 @section('content')
     <!-- BLog Start -->
         <div class="card blog blog-detail border-0 shadow rounded">
-            <img src="/assets/images/blog/01.jpg" class="img-fluid rounded-top" alt="">
+            <img src="@if($new->image) {{ Storage::disk('public')->url($new->image) }} @else/assets/images/blog/01.jpg @endif" class="img-fluid rounded-top" alt="">
             <div class="card-body content">
 
                         <h6><i class="mdi mdi-tag text-primary mr-1"></i><a href="javscript:void(0)" class="text-primary">{{$new->category->title}}</a></h6>
 
 {{--                <p class="text-muted mt-3">The most well-known dummy text is the 'Lorem Ipsum', which is said to have originated in the 16th century. Lorem Ipsum is composed in a pseudo-Latin language which more or less corresponds to 'proper' Latin. It contains a series of real Latin words. This ancient dummy text is also incomprehensible, but it imitates the rhythm of most European languages in Latin script. </p>--}}
                 <blockquote class="blockquote mt-3 p-3">
-                    <p class="text-muted mb-0 font-italic">{{$new->description}}</p>
+                    <p class="text-muted mb-0 font-italic">{!! $new->description !!}</p>
                 </blockquote>
 {{--                <p class="text-muted">The advantage of its Latin origin and the relative meaninglessness of Lorum Ipsum is that the text does not attract attention to itself or distract the viewer's attention from the layout.</p>--}}
                 <div class="post-meta mt-3">

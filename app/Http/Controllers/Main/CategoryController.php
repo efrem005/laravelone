@@ -13,7 +13,7 @@ class CategoryController extends Controller
         $category = Category::with('news')->find($item);
 
         return view('news.index')
-            ->with('news', $category->news()->paginate(6))
+            ->with('news', $category->news()->orderByDesc('id')->paginate(6))
             ->with('title', $category->title)
             ->with('category', Category::withCount('news')->get());
     }

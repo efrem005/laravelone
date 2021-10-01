@@ -19,11 +19,11 @@
                     <div class="dropdown">
                         @if(Auth::user()->is_admin == 2)
                         <a class="btn btn-primary  dropdown-toggle" href="{{route('admin.parser')}}">
-                            <i class="mdi mdi-cog me-2"></i> обновить
+                            <i class="mdi mdi-update me-2"></i> обновить
                         </a>
                         @endif
                         <a class="btn btn-primary  dropdown-toggle" href="{{route('admin.news.create')}}">
-                            <i class="mdi mdi-cog me-2"></i> добавить
+                            <i class="mdi mdi-message me-2"></i> добавить
                         </a>
                     </div>
                 </div>
@@ -65,13 +65,9 @@
                                         </a>
                                     </td>
                                     <td class="text-center p-1" style="width: 30px; vertical-align: middle">
-                                        <form method="post" action="{{ route("admin.news.destroy", ['news' => $new]) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm edit" title="delete">
-                                                <i class="fas fa-shopping-basket"></i>
-                                            </button>
-                                        </form>
+                                        <button type="button" class="btn btn-danger btn-sm edit" data-bs-toggle="modal" data-bs-target="#myModal{{$new->id}}">
+                                            <i class="fas fa-shopping-basket"></i>
+                                        </button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -84,5 +80,36 @@
             </div> <!-- end col -->
             {!! $news->links('inc.paginator') !!}
         </div>
+
+
+
+    @foreach($news as $new)
+    <div id="myModal{{$new->id}}" class="modal fade" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Удалить новость</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="font-size-16">{{$new->title}}</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary waves-effect"
+                            data-bs-dismiss="modal">отмена</button>
+                    <form method="post" action="{{ route("admin.news.destroy", ['news' => $new]) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger waves-effect waves-light" title="delete">
+                            удалить
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+
 @endsection
 

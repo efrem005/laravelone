@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\News\NewsCreateRequest;
 use App\Http\Requests\Admin\News\NewsUpdateRequest;
 use App\Models\Category;
 use App\Models\News;
+use App\Services\UploadService;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -24,7 +25,7 @@ class NewsController extends Controller
     public function index()
     {
         return view('admin.news.index')
-            ->with('news', News::with('category')->paginate(10));
+            ->with('news', News::with('category')->orderByDesc('id')->paginate(10));
     }
 
     /**
@@ -46,7 +47,15 @@ class NewsController extends Controller
      */
     public function store(NewsCreateRequest $request, News $news)
     {
-        $news->fill($request->validated())->save();
+        $data = $request->validated();
+
+        if ($request->hasfile('image')){
+            $uploadService = app(UploadService::class);
+            $fileUrl = $uploadService->upload($request->file('image'));
+            $data['image'] = $fileUrl;
+        }
+
+        $news->fill($data)->save();
 
         if ($news->save()) {
             return redirect()
@@ -92,7 +101,15 @@ class NewsController extends Controller
      */
     public function update(NewsUpdateRequest $request, News $news)
     {
-        $news->fill($request->validated())->save();
+        $data = $request->validated();
+
+        if ($request->hasfile('image')){
+            $uploadService = app(UploadService::class);
+            $fileUrl = $uploadService->upload($request->file('image'));
+            $data['image'] = $fileUrl;
+        }
+
+        $news->fill($data)->save();
 
 
         if ($news->save()) {

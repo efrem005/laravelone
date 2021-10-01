@@ -5,6 +5,7 @@
     <meta charset="utf-8"/>
     <title>Новостной блог | @section('title')@show</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="S2zN78T_cinwva-IjbCoEJjpzt0OX3Tu1QZ9G4IIi5o" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset('/assets/images/favicon.ico')}}">
     <!-- CSRF Token -->
