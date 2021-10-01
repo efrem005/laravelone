@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset('/assets/images/favicon.ico')}}">
-
+    <!-- Plugins css -->
+    <link href="{{asset('assets/css/dropzone.min.css')}}" rel="stylesheet" type="text/css">
     <!-- Bootstrap Css -->
     <link href="{{asset('/assets/css/bootstrap.admin.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css">
     <!-- Icons Css -->
@@ -245,15 +246,24 @@
 
                     <li @if(request()->routeIs('admin.category.*')) class="mm-active" @endif>
                         <a href="{{route('admin.category.index')}}" @if(request()->routeIs('admin.category.*')) class="active" @endif>
-                            <i class="ti-package"></i><span class="badge rounded-pill bg-primary float-end">{{$categoryCount}}</span>
+                            <i class="ti-layers-alt"></i><span class="badge rounded-pill bg-primary float-end">{{$categoryCount}}</span>
                             <span>Категории</span>
                         </a>
                     </li>
 
                     <li @if(request()->routeIs('admin.users.*')) class="mm-active" @endif>
                         <a href="{{route('admin.users.index')}}" @if(request()->routeIs('admin.users.*')) class="active" @endif>
-                            <i class="ti-package"></i><span class="badge rounded-pill bg-primary float-end">{{$usersCount}}</span>
+                            <i class="ti-user"></i><span class="badge rounded-pill bg-primary float-end">{{$usersCount}}</span>
                             <span>Пользователи</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-title">доп</li>
+
+                    <li @if(request()->routeIs('admin.file.*')) class="mm-active" @endif>
+                        <a href="{{route('admin.file')}}" @if(request()->routeIs('admin.file.*')) class="active" @endif>
+                            <i class="ti-layout-tab"></i>
+                            <span>Диспетчер файлов</span>
                         </a>
                     </li>
                 </ul>
@@ -305,6 +315,10 @@
 <script src="{{asset('/assets/js/simplebar.min.js')}}"></script>
 <script src="{{asset('/assets/js/waves.min.js')}}"></script>
 
+<!-- init js -->
+<script src="{{asset('/assets/js/pages/form-editor.init.js')}}"></script>
+<!-- Plugins js -->
+<script src="{{asset('assets/js/dropzone.min.js')}}"></script>
 
 <script src="{{asset('/assets/js/app.admin.js')}}"></script>
 @stack('js')

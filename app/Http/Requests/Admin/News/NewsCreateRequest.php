@@ -25,6 +25,7 @@ class NewsCreateRequest extends FormRequest
     {
         return [
             'category_id' => ['required', 'int'],
+            'image' => ['sometimes'],
             'title' => ['required', 'string', 'min:5'],
             'description' => ['required', 'string', 'min:50'],
             'author' => ['required', 'string', 'min:2']
@@ -40,6 +41,7 @@ class NewsCreateRequest extends FormRequest
     {
         return [
             'category_id' => 'Название категории',
+            'image' => 'изображение',
             'title' => 'Название новости',
             'description' => 'Текст новости',
             'author' => 'Автор'

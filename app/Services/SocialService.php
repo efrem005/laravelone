@@ -14,7 +14,12 @@ class SocialService implements Social
         $email = $user->getEmail();
         $name = $user->getName();
         $avatar = $user->getAvatar();
-        $login = $user->getNickname();
+        if (!$user->getNickname()){
+            $explode = explode('@', $user->getEmail());
+            $login = $explode[0];
+        } else {
+            $login = $user->getNickname();
+        }
 
         $checkUser = Model::where('email', $email)->first();
         if (!$checkUser) {

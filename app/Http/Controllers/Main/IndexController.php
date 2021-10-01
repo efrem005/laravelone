@@ -13,6 +13,6 @@ class IndexController extends Controller
     {
         return view('index')
             ->with('category', Category::withCount('news')->get())
-            ->with('news', News::with('category')->paginate(6));
+            ->with('news', News::orderByDesc('id')->with('category')->paginate(6));
     }
 }

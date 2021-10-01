@@ -21,7 +21,7 @@
 
 @section('content')
     <div class="row justify-content-md-center py-5">
-        <form method="post" action="{{route('admin.news.store')}}" class="col-8">
+        <form method="post" action="{{route('admin.news.store')}}" class="col-8" enctype="multipart/form-data">
             @csrf
             <div class="form-floating mb-3">
                 <select name="category_id" class="form-select" id="exampleInputEmail1">
@@ -31,6 +31,14 @@
                 </select>
                 <label for="exampleInputEmail1" class="form-label">категория</label>
             </div>
+
+            <div class="mb-3">
+                <input type="file" name="image" class="form-control">
+            </div>
+            @error('image')
+            <div class="alert alert-danger col-8">{{ $message }}</div>
+            @enderror
+
             <div class="form-floating mb-3">
                 <input type="text" name="title" value="{{ old('title') }}" class="form-control @error('title') is-invalid @enderror" placeholder="Название новости" id="exampleInputPassword1">
                 <label for="exampleInputPassword1">Название новости</label>
@@ -40,7 +48,6 @@
             @enderror
             <div class="form-floating mb-3">
                 <textarea style="height: 100px" placeholder="Текст новости" name="description" class="form-control @error('description') is-invalid @enderror" id="exampleInputPassword1">{{ old('description') }}</textarea>
-                <label for="exampleInputPassword1">Текст новости</label>
             </div>
             @error('description')
             <div class="alert alert-danger col-8">{{ $message }}</div>
@@ -56,5 +63,17 @@
         </form>
     </div>
 @endsection
-
-
+@push('js')
+    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+    <script>
+        var options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+        };
+    </script>
+    <script>
+        CKEDITOR.replace('description', options);
+    </script>
+@endpush

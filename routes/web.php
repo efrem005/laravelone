@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Main\AccountController;
 use App\Http\Controllers\Admin\ParserController;
 use App\Http\Controllers\Auth\SocialController;
+use App\Http\Controllers\Admin\FileManagerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,14 +35,14 @@ Route::get('/category/{item}', [CategoryController::class, 'getCategorySrh'])->w
 
 Auth::routes(['verify' => true]);
 
-Route::group(['middleware' => 'verified'], function () {
+// Account
+Route::group(['prefix' => 'account', 'as' => 'account.', 'middleware' => ['auth']], function (){
+    Route::get('/profile', [AccountController::class, 'profile'])->name('profile');
+    Route::get('/messages', [AccountController::class, 'messages'])->name('messages');
+    Route::get('/settings', [AccountController::class, 'settings'])->name('settings');
+});
 
-    // Account
-    Route::group(['prefix' => 'account', 'as' => 'account.'], function (){
-        Route::get('/profile', [AccountController::class, 'profile'])->name('profile');
-        Route::get('/messages', [AccountController::class, 'messages'])->name('messages');
-        Route::get('/settings', [AccountController::class, 'settings'])->name('settings');
-    });
+Route::group(['middleware' => 'verified'], function () {
 
     // Admin
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin', 'auth']], function () {
@@ -49,9 +50,14 @@ Route::group(['middleware' => 'verified'], function () {
         Route::resource('news', NewsAdmin::class);
         Route::resource('category', CategoryAdmin::class);
         Route::resource('users', UsersController::class);
-        Route::get('/parser', ParserController::class)->name('parser');
+        Route::get('parser', ParserController::class)->name('parser');
+        Route::get('file', FileManagerController::class)->name('file');
     });
 
+    //file manager
+    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
 });
 
 

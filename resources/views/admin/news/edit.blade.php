@@ -24,7 +24,7 @@
         <div class="col-12">
         @include('inc.messages')
         </div>
-        <form class="col-8" method="post" action="{{route('admin.news.update', ['news' => $new])}}">
+        <form class="col-8" method="post" action="{{route('admin.news.update', ['news' => $new])}}" enctype="multipart/form-data">
             @csrf
             @method('put')
             <div class="form-floating mb-3">
@@ -35,6 +35,14 @@
                 </select>
                 <label for="exampleInputEmail1" class="form-label">категория</label>
             </div>
+
+            <div class="mb-3">
+                <input type="file" name="image" class="form-control">
+            </div>
+            @error('image')
+            <div class="alert alert-danger col-8">{{ $message }}</div>
+            @enderror
+
             <div class="form-floating mb-3">
                 <input type="text" name="title" value="{{ $new->title }}" class="form-control @error('title') is-invalid @enderror" placeholder="Название новости" id="exampleInputPassword1">
                 <label for="exampleInputPassword1">Название новости</label>
@@ -42,13 +50,15 @@
             @error('title')
                     <div class="alert alert-danger col-8">{{ $message }}</div>
             @enderror
+
             <div class="form-floating mb-3">
-                <textarea style="height: 100px" placeholder="Текст новости" name="description" class="form-control @error('description') is-invalid @enderror" id="exampleInputPassword1">{{ $new->description }}</textarea>
-                <label for="exampleInputPassword1">Текст новости</label>
+                <textarea placeholder="Текст новости" name="description" class="form-control @error('description') is-invalid @enderror" id="description">{{ $new->description }}</textarea>
+                <label for="description"></label>
             </div>
             @error('description')
             <div class="alert alert-danger col-8">{{ $message }}</div>
             @enderror
+
             <div class="form-floating mb-3">
                 <input type="text" name="author" value="{{ $new->author }}" placeholder="Автор" class="form-control @error('author') is-invalid @enderror" id="exampleInputPassword1">
                 <label for="exampleInputPassword1" class="form-label">Автор</label>
@@ -60,3 +70,17 @@
         </form>
     </div>
 @endsection
+@push('js')
+    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+    <script>
+        var options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+        };
+    </script>
+    <script>
+        CKEDITOR.replace('description', options);
+    </script>
+@endpush
