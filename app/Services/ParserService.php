@@ -28,4 +28,17 @@ class ParserService implements Parser
             ],
         ]);
     }
+
+    public function parseLenta(string $link): array
+    {
+        $xml = XMLParser::load($link);
+        return $xml->parse([
+            'title' => [
+                'uses' => 'channel.title'
+            ],
+            'news' => [
+                'uses' => 'channel.item[guid,author,title,link,description,enclosure::url>image,pubDate,category]',
+            ]
+        ]);
+    }
 }

@@ -9,7 +9,8 @@ use App\Http\Controllers\Admin\CategoryController as CategoryAdmin;
 use App\Http\Controllers\Admin\NewsController as NewsAdmin;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Main\AccountController;
-use App\Http\Controllers\Admin\ParserController;
+use App\Http\Controllers\Admin\Parser\YandexController;
+use App\Http\Controllers\Admin\Parser\LentaController;
 use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\Admin\FileManagerController;
 
@@ -50,7 +51,8 @@ Route::group(['middleware' => 'verified'], function () {
         Route::resource('news', NewsAdmin::class);
         Route::resource('category', CategoryAdmin::class);
         Route::resource('users', UsersController::class);
-        Route::get('parser', ParserController::class)->name('parser');
+        Route::get('parser_yandex', YandexController::class)->name('parser.yandex');
+        Route::get('parser_lenta', LentaController::class)->name('parser.lenta');
         Route::get('file', FileManagerController::class)->name('file');
     });
 

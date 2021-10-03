@@ -20,8 +20,7 @@ class NewsController extends Controller
     {
         return view('news.show')
             ->with('new', $new)
-            ->with('category', Category::query()->withCount('news')->get())
-            ->with('news', News::query()->limit(4)->get());
+            ->with('category', Category::query()->withCount('news')->get());
     }
 
 }
