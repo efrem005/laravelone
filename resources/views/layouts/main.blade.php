@@ -182,10 +182,10 @@
                         <div class="widget mb-4 pb-2">
                             <h4 class="widget-title">Свежие новости</h4>
                             <div class="mt-4">
-                                @foreach($news as $key => $value)
+                                @foreach($newsLimit as $key => $value)
                                     @continue($key > 3)
                                     <div class="clearfix post-recent">
-                                        <div class="post-recent-thumb float-left"> <a href="{{route('news.show', ['new' => $value->id])}}"> <img alt="img" src="/assets/images/blog/07.jpg" class="img-fluid rounded"></a></div>
+                                        <div class="post-recent-thumb float-left"> <a href="{{route('news.show', ['new' => $value->id])}}"> <img alt="img" src="@if($value->image) {{$value->image}} @else /assets/images/blog/07.jpg @endif" class="img-fluid rounded"></a></div>
                                         <div class="post-recent-content float-left"><a href="{{route('news.show', ['new' => $value->id])}}"><p>{{$value->title}}</p></a><span class="text-muted mt-2">{{$value->created_at}}</span></div>
                                     </div>
                                 @endforeach

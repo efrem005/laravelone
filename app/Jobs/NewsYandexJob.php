@@ -11,7 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class NewsJob implements ShouldQueue
+class NewsYandexJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -47,7 +47,7 @@ class NewsJob implements ShouldQueue
                         'guid' => $new['guid'],
                         'description' => $new['description'],
                         'category_id' => $this->link['category_id'],
-                        'author' => $data['title'],
+                        'author' => $data['author'],
                         'created_at' => now()
                     ]);
                     $news->save();

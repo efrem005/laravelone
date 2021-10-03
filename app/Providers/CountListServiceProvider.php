@@ -36,5 +36,8 @@ class CountListServiceProvider extends ServiceProvider
             $view->with('newsCount', News::count());
             $view->with('usersCount', User::count());
         });
+        \View::composer('layouts.main', function ($view) {
+            $view->with('newsLimit', News::query()->orderByDesc('id')->limit(4)->get());
+        });
     }
 }

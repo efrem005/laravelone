@@ -23,7 +23,7 @@
 @section('content')
     <!-- BLog Start -->
         <div class="card blog blog-detail border-0 shadow rounded">
-            <img src="@if($new->image) {{ Storage::disk('public')->url($new->image) }} @else/assets/images/blog/01.jpg @endif" class="img-fluid rounded-top" alt="">
+            <img src="@if($new->image) {{ $new->image }} @else/assets/images/blog/01.jpg @endif" class="img-fluid rounded-top" alt="">
             <div class="card-body content">
 
                         <h6><i class="mdi mdi-tag text-primary mr-1"></i><a href="javscript:void(0)" class="text-primary">{{$new->category->title}}</a></h6>

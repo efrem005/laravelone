@@ -21,7 +21,7 @@
         <div class="col-lg-6 col-md-12 mb-4 pb-2">
             <div class="card blog rounded border-0 shadow">
                 <div class="position-relative">
-                    <img src="/assets/images/blog/01.jpg" class="card-img-top rounded-top" alt="...">
+                    <img src="@if($new->image) {{$new->image}} @else /assets/images/blog/01.jpg @endif" class="card-img-top rounded-top" alt="{{$new->title}}">
                     <div class="overlay rounded-top bg-dark"></div>
                 </div>
                 <div class="card-body content">

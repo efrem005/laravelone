@@ -18,8 +18,11 @@
                 <div class="d-none d-md-block">
                     <div class="dropdown">
                         @if(Auth::user()->is_admin == 2)
-                        <a class="btn btn-primary  dropdown-toggle" href="{{route('admin.parser')}}">
-                            <i class="mdi mdi-update me-2"></i> обновить
+                        <a class="btn btn-primary  dropdown-toggle" href="{{route('admin.parser.yandex')}}">
+                            <i class="mdi mdi-update me-2"></i> яндекс
+                        </a>
+                        <a class="btn btn-primary  dropdown-toggle" href="{{route('admin.parser.lenta')}}">
+                            <i class="mdi mdi-update me-2"></i> лента
                         </a>
                         @endif
                         <a class="btn btn-primary  dropdown-toggle" href="{{route('admin.news.create')}}">
